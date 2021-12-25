@@ -1,0 +1,18 @@
+
+<div class="projects-panel__swiper-slide">
+    <div class="project-in-panel">
+            <h4 class="project-title">
+                <a [routerLink]="'project/' + project.id">
+                    {{project.title}}
+                </a>
+            </h4>
+        <h5 class="project-description">{{project.description}}</h5>
+        <div class="project-people">
+            <a [href]="i" *ngFor="let e of [].constructor(project.users.length > 4 ? (4) : (project.users.length) ); let i = index" [ngStyle]="{left: i * 17 + 'px'}" class="people-link-avatars">
+                <img [src]="!!project.users[i].avatar ? project.users[i].avatar : '../../../assets/default-avatar.png'" alt="" class="project-people__avatar">
+            </a>
+            <a *ngIf="project.users.length > 4" class="people-link-all" href="#">and {{project.users.length - 4}} more...</a>
+        </div>
+        <a [routerLink]="'project/' + project.id" class="project-in-panel__bottom">Open this project...</a>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+.project-in-panel{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+    *.project-title{
+        width: 100%;
+        height: 21px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-weight: 623;
+        font-size: 116%;
+        position: relative;
+
+        a {
+            color: var(--darkblue);
+        }
+
+        &:first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+    *.project-description {
+        color: var(--grey);
+        width: 100%;
+        height: 18px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-weight: 500;
+        margin-top: 4px;
+
+        &:first-letter {
+            text-transform: capitalize;
+        }
+
+        &:hover {
+            color: var(--darkblue);
+            opacity: .9;
+        }
+    }
+
+    *.project-people {
+        min-width: 100%;
+        height: 32px;
+        display: flex;
+        position: absolute;
+        bottom: 30px;
+
+        > .people-link-avatars {
+            width: 32px;
+            height: 32px;
+            display: block;
+            position: absolute;
+
+            &:hover {
+                width: 34px;
+                height: 34px;
+                z-index: 10;
+                margin-top: -1px;
+                transition: all .25 ease-out;
+            }
+
+            > img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                border: 2px solid var(--blue);
+            }
+        }
+
+        > .people-link-all {
+            align-self: flex-end;
+            display: block;
+            position: absolute;
+            right: 0;
+            font-size: 14px;
+            color: var(--grey);
+            text-decoration: underline;
+        }
+        
+    }
+
+    &__bottom {
+        width: 100%;
+        height: 24px;
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding-top: 4px;
+        padding-left: 4px;
+        font-size: 14px;
+        border-top: 1px solid var(--grey-border);
+    }
+}

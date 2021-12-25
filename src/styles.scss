@@ -1,1 +1,228 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+:root {
+    --grey: #6b778c;
+    --grey-border: #dfe1e6;
+    --greyish: #f4f5f7;
+    --blue: #0052cc;
+    --whiteish: #fafbfc;
+    --darkblue: #172b4d;
+}
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+a{
+    text-decoration: none;
+    color: #0000FF;
+}
+
+main {
+    margin-top: 56px;
+    padding: 6px max(10px, calc(50% - 1100px));
+    position: relative;
+}
+
+main.full-project {
+    width: 100%;
+    max-height: calc(100vh - 56px);
+}
+
+.auth-form {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    > h3 {
+        text-align: center;
+        padding-bottom: 24px;
+        color: var(--grey)
+    }
+
+    &__login-other {
+        width: 100%;
+
+        > span {
+            display: block;
+            width: 100%;
+            height: 43px;
+            line-height: 39px;
+            text-align: center;
+            color: var(--grey);
+        }
+
+        > button {
+            width: 100%;
+            background: white;
+            height: 40px;
+            border: none;
+            box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px;
+            border-radius: 3px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        } 
+    }
+
+    a {
+        color: var(--blue);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.auth-form__form {
+    width: 100%;
+
+    &__errors {
+        width: 100%;
+        height: 24px;
+        color: rgb(255 123 123);
+        font-size: 14px;
+        font-weight: 600;
+        padding-left: 8px;
+    }
+
+    /* input */
+
+     input {
+        width: 100%;
+        height: 36px;
+        outline: none;
+        background-color: var(--whiteish);
+        border: 2px solid var(--grey-border);
+        border-radius: 3px;
+        padding: 8px 6px;
+
+        &:focus {
+            border: 2px solid var(--blue);
+        }
+    
+        &:hover {
+            background-color: rgb(233, 233, 233);
+            transition: background-color, .25s ease-out;
+        }
+    
+        &.ng-invalid.ng-dirty {
+            border: 2px solid rgb(255 123 123);
+
+            &:focus {
+                border: 2px solid var(--blue);
+            }
+        }
+    }
+
+    /* submit button */
+
+    > button {
+        width: 100%;
+        height: 36px;
+        background-color: var(--blue);
+        border-radius: 3px;
+        line-height: 32px;
+        border: none;
+        cursor: pointer;
+        color: white;
+        font-weight: 600;
+        font-size: 16px;
+
+        &:disabled, &[disabled] {
+            opacity: .65;
+        }
+
+        &:hover:enabled {
+            background-color: #0065ff;
+            transition: background-color, .2s ease-out;
+        }
+    }
+}
+
+.auth-navigation-block {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--grey-border);
+    position: absolute;
+    bottom: 0;
+
+    > a {
+        display: block;
+        width: 40%;
+        text-align: center;
+        font-size: 14px;
+    }
+}
+
+.password-block {
+
+    &__inputs {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .input-block {
+        width: 48%;
+    }
+
+}
+
+.passwordMatch {
+    border: 2px solid rgb(255 123 123) !important;
+
+    &:focus {
+        border: 2px solid var(--blue) !important;
+    }
+}
+
+.edit-button {
+    display: block;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    position: absolute;
+    top: -5px;
+    right: -3px;
+    z-index: 3;
+    padding-top: 2px;
+    opacity: 0.6;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+
+    &:hover {
+        transition: all .2s ease-in-out;
+        opacity: 1;
+        background-color: var(--whiteish);
+    }
+}
+
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.tasks-list.cdk-drop-list-dragging .task-in-list:not(.cdk-drag-placeholder) {
+    transition: transform .55s cubic-bezier(0, 0, 0.2, 1) ;
+}
+
+

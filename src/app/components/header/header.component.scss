@@ -1,0 +1,36 @@
+.header{
+    width: 100%;
+    height: 56px;
+    padding: 6px max(18px, calc(50% - 1100px));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        height: 4px;
+        background: linear-gradient(180deg,rgba(9,30,66,0.13) 0,rgba(9,30,66,0.13) 1px,rgba(9,30,66,0.08) 1px,rgba(9,30,66,0) 4px);
+    }
+
+    &__logo {
+        height: 60%;
+    }
+
+    &__right {
+        height: 100%;
+
+
+        &__avatar {
+            height: 100%;
+            border-radius: 50%;
+        }
+    }
+}

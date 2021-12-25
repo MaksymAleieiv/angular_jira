@@ -1,0 +1,67 @@
+
+<div cdkDropList cdkDropListOrientation="horizontal" class="tasks-table" (cdkDropListDropped)="dropBlock($event)" cdkDropListGroup>
+    <div cdkDrag *ngFor="let statusId of statusesIds; index as i" class="tasks-list-box">
+        <div class="header">
+            <h2 class="status-header">
+                <span class="status-header__title">
+                    {{statuses[i]}}, {{sortedObjectOfTasks[statusId] && sortedObjectOfTasks[statusId].length || 0}} tasks 
+                </span>
+                <button mat-icon-button [matMenuTriggerFor]="menu" class="status-header__controls" *ngIf="isCurrentUserAdmin"> 
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button (click)="editStatus(statusId, statuses[i])" mat-menu-item>
+                        <mat-icon>create</mat-icon>
+                        <span class="mat-btn-text">Edit status</span>
+                    </button>
+                    <button (click)="deleteStatus(statusId)" mat-menu-item>
+                        <mat-icon>delete_forever</mat-icon>
+                        <span class="mat-btn-text">Delete status</span>
+                    </button>
+                </mat-menu>
+            </h2>
+        </div>
+    
+        <div
+            cdkDropList
+            [cdkDropListData]="sortedObjectOfTasks[statusId] || []"
+            [class]="'tasks-list status-id-' + statusesIds[i]"
+            (cdkDropListDropped)="drop($event)"
+            [style.height.px]="listHeight"
+        >
+            <div *ngFor="let task of sortedObjectOfTasks[statusId] || []" [class]="'task-in-list task-id-' + task.id" [style.opacity]="task.type.id === 5 ? (0) : (1)" cdkDrag>
+                <div class="task__wrapper">
+                    <div class="top">
+                        <h3>{{task.title}}</h3>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" class="edit-button" *ngIf="isCurrentUserAdmin; else defaultUser">
+                            <mat-icon>more_horiz</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button (click)="editTask(task.id)" mat-menu-item>
+                                <mat-icon>create</mat-icon>
+                                <span class="mat-btn-text">Edit task</span>
+                            </button>
+                            <button (click)="deleteTask(task.id)" mat-menu-item>
+                                <mat-icon>delete_forever</mat-icon>
+                                <span class="mat-btn-text">Delete task</span>
+                            </button>
+                        </mat-menu>
+                        <ng-template #defaultUser>
+                            <button mat-icon-button [matMenuTriggerFor]="menu" class="edit-button"  (click)="editTask(task.id)">
+                                <mat-icon>create</mat-icon>
+                            </button>
+                        </ng-template>
+                    </div>
+                    <div class="bottom">
+                        <div class="type">
+                            <div class="type__title" [style.backgroundColor]="task.type.color">{{task.type.title}}</div>
+                        </div>
+                        <img [src]="!!task.user.avatar ? task.user.avatar : '../../../assets/default-avatar.png'"  alt="" class="avatar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

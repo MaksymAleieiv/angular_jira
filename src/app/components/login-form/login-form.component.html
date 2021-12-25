@@ -1,0 +1,49 @@
+<div class="auth-form">
+    <h3>Log in your account</h3>
+    <form class="auth-form__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input placeholder="Enter your email address" formControlName="email" required (focus)="onFocus(email)" (blur)="onBlur(email)" >
+        <div class="auth-form__form__errors">
+            <div *ngIf="email?.invalid && email?.dirty">
+                <div *ngIf="email?.errors?.['required']">
+                    Email is required.
+                </div>
+                <div *ngIf="email?.errors?.['email']">
+                    Wrong email.
+                </div>
+                <div *ngIf="email?.errors?.['serverError']">
+                    {{email?.errors?.['serverError']}}
+                </div>
+            </div>
+        </div>
+        <input placeholder="Enter your password" maxlength="16" type="password" formControlName="password" required (focus)="onFocus(password)" (blur)="onBlur(password)">
+        <div class="auth-form__form__errors">
+            <div *ngIf="password?.invalid && password?.dirty">
+                <div *ngIf="password?.errors?.['required']">
+                    Password is required.
+                </div>
+                <div *ngIf="password?.errors?.['minlength']">
+                    Password must be at least 6 characters long.
+                </div>
+                <div *ngIf="password?.errors?.['maxlength']">
+                    Password must be at less that 16 characters long.
+                </div>
+                <div *ngIf="password?.errors?.['serverError']">
+                    {{password?.errors?.['serverError']}}
+                </div>
+            </div>
+        </div>
+        <button type="submit">Continue</button>
+    </form>
+
+    <div class="auth-form__login-other">
+        <span>or</span>
+        <button id='google'>Sign Up with Google</button>
+        <button id='google'>Sign Up with Google</button>
+    </div>
+    
+    <div class="auth-navigation-block">
+        <a [routerLink]="['/registration']">I don't remember my password</a>
+        •
+        <a [routerLink]="['/registration']" queryParamsHandling="merge">Register new account</a>
+    </div>
+</div>

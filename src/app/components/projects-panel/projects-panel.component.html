@@ -1,0 +1,20 @@
+<div class="projects-panel">
+    <div class="projects-panel__header">
+        <h3>Your projects</h3>
+        <a href="my_projects">Show all...</a>
+    </div>
+    <div class="projects-panel__swiper-wrapper">
+        <div [ngStyle]="{'display' : showBeginCurtains ? 'block' : 'none'}" class="projects-panel__swiper-wrapper__left"></div>
+        <swiper [config]="config" (slideChange)="onSwipe($event)" (reachEnd)="onEnd()" (reachBeginning)="onBeginning()">
+            <ng-template swiperSlide *ngFor="let project of projects" >
+                <app-project-in-panel [project]="project"></app-project-in-panel>
+            </ng-template>
+            <ng-template *ngIf="!doesCurrentUserHaveMoreThanTenProjects" swiperSlide>
+                <div class="projects-panel__swiper-slide">
+                    <a href="my_projects">Show all...</a>
+                </div>
+            </ng-template>
+        </swiper>
+        <div [ngStyle]="{'display' : showEndCurtains ? 'block' : 'none'}" class="projects-panel__swiper-wrapper__right"></div>   
+    </div>
+</div>

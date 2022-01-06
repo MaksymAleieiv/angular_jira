@@ -1,8 +1,23 @@
 <header class="header">
-    <img class="header__logo" src="../../../assets/logo-text.png" alt="">
+    <a routerLink="" >
+        <img class="header__logo" src="../../../assets/logo-text.png" alt="">
+    </a>
     <div class="header__right">
-        <a href='#'> 
-            <img class="header__right__avatar" [src]="!!avatar ? avatar : '../../../assets/default-avatar.png'" alt=""/>
-        </a>
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="avatar-btn"> 
+            <img class="avatar-btn__avatar" [src]="!!avatar ? avatar : '../../../assets/default-avatar.png'" alt=""/>
+        </button>
+        <mat-menu #menu="matMenu">
+            <a routerLink="/">
+                <button mat-menu-item>
+                    <mat-icon>person</mat-icon>
+                    <span class="mat-btn-text">Profile</span>
+                </button>
+            </a>
+            <button mat-menu-item (click)="logOut()">
+                <mat-icon class="logout">exit_to_app</mat-icon>
+                <span class="mat-btn-text logout">Log Out</span>
+            </button>
+        </mat-menu>
     </div>
 </header>
+<!-- ADD LOGOUT AND PROFILE -->

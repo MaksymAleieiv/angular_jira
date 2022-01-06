@@ -1,4 +1,88 @@
-<p>edit-task works!</p>
-user, type, title , desc
+<div class="overlay__inner__project">
+    <form [formGroup]="taskForm" class="form">
+        <div class="edit-task__wrapper">
+            <div class="edit-task__wrapper__left">
+                <header class="header">
+                    <app-toggleable-input-field [inputText]="task?.title || ''" [placeholderText]="'Enter task title...'" (output)="onTaskTitleChangeConfirm($event)" className="input-box-task"></app-toggleable-input-field>
+                    <div class="project-title__under">
+                        <button type="button" class="copy-link" [cdkCopyToClipboard]="url" *ngIf="!!task">
+                            <mat-icon>attachment</mat-icon>
+                            Copy link
+                        </button>
+                        <mat-form-field appearance="fill" class="type-select">
+                            <mat-label *ngIf="!task && !typeId?.value">Type</mat-label>
+                            <mat-select (selectionChange)="onTypeChanged($event)" required [value]="task?.type?.id || null" [style.backgroundColor]="task && (typeColor || task?.type?.color) || typeColor || '#0052cc'">
+                                <ng-container *ngFor="let type of types">
+                                    <mat-option *ngIf="type.id !== 1" [value]="type.id" [style.backgroundColor]="type.color">
+                                        {{type.title}}
+                                    </mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </header>
+                <div class="description-box">
+                    <div class="description__header">
+                        <span>Description</span>
+                    </div>
+                    <app-input-field-with-swiper [focusedFromStart]="!task" [files]="files" [newFiles]="newFiles" [removedFilesIds]="removedFilesIds" [inputText]="description?.value" (setDataFromOutput)="setDescriptionAndFiles($event)" [placeholderText]="'Enter task description...'"></app-input-field-with-swiper>
+                </div>
+                <app-edit-task-comments-section *ngIf="!!task" [taskId]="task?.id" [projectId]="task?.projectId"></app-edit-task-comments-section>
+            </div>
+            <div class="edit-task__wrapper__right">
+                <app-edit-task-right-side
+                    [statusId]="data.statusId"
+                    [fullProject]="fullProject"
+                    [task]="task"
+                    (setUserAndStasus)="setUserIdAndStatusId($event)"
+                ></app-edit-task-right-side>
+                <button *ngIf="!task" class="confirm" (click)="confirmCreate()">Confirm</button>
+                <button class="close" (click)="closeDialog()">
+                    <mat-icon>clear</mat-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
 
-and don;t forget about description of the task when you click it (comments, files, etc)
+
+
+
+<!--form class="auth-form__form" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <input placeholder="Enter task title" formControlName="title" required (focus)="onFocus(title)" (blur)="onBlur(title)" >
+    <div class="auth-form__form__errors">
+        <div *ngIf="title?.invalid && title?.dirty">
+            <div *ngIf="title?.errors?.['required']">
+                Title can't be empty.
+            </div>
+        </div>
+    </div>
+    <input placeholder="Enter task title" formControlName="title" required (focus)="onFocus(title)" (blur)="onBlur(title)" >
+    <div class="auth-form__form__errors">
+        <div *ngIf="title?.invalid && title?.dirty">
+            <div *ngIf="title?.errors?.['required']">
+                Title is required.
+            </div>
+        </div>
+    </div>
+    <input placeholder="Enter task description" formControlName="description" required (focus)="onFocus(description)" (blur)="onBlur(description)" >
+    <mat-form-field appearance="fill">
+        <mat-label>Select user</mat-label>
+        <mat-select formControlName="userId">
+            <mat-option *ngFor="let user of users" [value]="user.id">
+            {{user.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Select type</mat-label>
+        <mat-select formControlName="typeId">
+            <mat-option *ngFor="let type of types" [value]="type.id">
+            {{type.title}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button type="submit">Continue</button>
+</form-->

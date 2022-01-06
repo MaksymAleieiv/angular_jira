@@ -1,0 +1,37 @@
+
+<div class="comment">
+    <div class="comment__left">
+        <img [src]="currentUser.avatar || '../../../assets/default-avatar.png'" alt="" class="avatar">
+    </div>
+    <div class="comment__right">
+        <app-input-field-with-swiper (setDataFromOutput)="createComment($event)" [placeholderText]="'Write your comment...'" [ClassName]="'commentCreate'" [shouldCleanAfterConfirm]="true"></app-input-field-with-swiper>
+    </div>
+</div>
+
+
+<div class="comment" *ngFor="let comment of comments">
+    <div class="comment__left">
+        <img [src]="comment.user.avatar || '../../../assets/default-avatar.png'" alt="" class="avatar">
+    </div>
+    <div class="comment__right">
+        <div class="author">
+            <span class="name">{{comment.user.name}}</span>
+            <span class="date">{{comment.createdAt | date: 'MMM d, y, h:mm'}}</span>
+        </div>
+        <app-input-field-with-swiper
+            [files]="comment.files"
+            [inputText]="comment.message"
+            [descriptionEditing]="currentlyEditingCommentId === comment.id"
+            (setDataFromOutput)="editComment($event, comment.id)"
+            (cancel)="resetCurrentlyEditingCommentId()"
+            [canBeEditedByThisUser]="currentUser.id === comment.user.id"
+            [placeholderText]="''"
+            [ClassName]="'comment'"
+        ></app-input-field-with-swiper>
+        <div class="comment__controls" *ngIf="currentUser.id === comment.user.id">
+            <button class="edit" type="button" (click)="turnOnEditMode(comment.id)">Edit</button>
+            <span > · </span> 
+            <button class="delete" type="button" (click)="deleteComment(comment.id)">Delete</button>
+        </div>
+    </div>
+</div>

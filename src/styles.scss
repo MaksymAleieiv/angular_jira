@@ -5,9 +5,11 @@
     --grey: #6b778c;
     --grey-border: #dfe1e6;
     --greyish: #f4f5f7;
+    --grey-color: #6B778C;
     --blue: #0052cc;
     --whiteish: #fafbfc;
     --darkblue: #172b4d;
+    --error: #ff7b7b;
 }
 
 *{
@@ -26,8 +28,9 @@ a{
 
 main {
     margin-top: 56px;
-    padding: 6px max(10px, calc(50% - 1100px));
+    padding: 32px 0 32px 32px;
     position: relative;
+    max-height: calc(100vh - 56px);
 }
 
 main.full-project {
@@ -35,155 +38,7 @@ main.full-project {
     max-height: calc(100vh - 56px);
 }
 
-.auth-form {
-    width: 100%;
-    height: 100%;
-    position: relative;
-
-    > h3 {
-        text-align: center;
-        padding-bottom: 24px;
-        color: var(--grey)
-    }
-
-    &__login-other {
-        width: 100%;
-
-        > span {
-            display: block;
-            width: 100%;
-            height: 43px;
-            line-height: 39px;
-            text-align: center;
-            color: var(--grey);
-        }
-
-        > button {
-            width: 100%;
-            background: white;
-            height: 40px;
-            border: none;
-            box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px;
-            border-radius: 3px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        } 
-    }
-
-    a {
-        color: var(--blue);
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-}
-
-.auth-form__form {
-    width: 100%;
-
-    &__errors {
-        width: 100%;
-        height: 24px;
-        color: rgb(255 123 123);
-        font-size: 14px;
-        font-weight: 600;
-        padding-left: 8px;
-    }
-
-    /* input */
-
-     input {
-        width: 100%;
-        height: 36px;
-        outline: none;
-        background-color: var(--whiteish);
-        border: 2px solid var(--grey-border);
-        border-radius: 3px;
-        padding: 8px 6px;
-
-        &:focus {
-            border: 2px solid var(--blue);
-        }
-    
-        &:hover {
-            background-color: rgb(233, 233, 233);
-            transition: background-color, .25s ease-out;
-        }
-    
-        &.ng-invalid.ng-dirty {
-            border: 2px solid rgb(255 123 123);
-
-            &:focus {
-                border: 2px solid var(--blue);
-            }
-        }
-    }
-
-    /* submit button */
-
-    > button {
-        width: 100%;
-        height: 36px;
-        background-color: var(--blue);
-        border-radius: 3px;
-        line-height: 32px;
-        border: none;
-        cursor: pointer;
-        color: white;
-        font-weight: 600;
-        font-size: 16px;
-
-        &:disabled, &[disabled] {
-            opacity: .65;
-        }
-
-        &:hover:enabled {
-            background-color: #0065ff;
-            transition: background-color, .2s ease-out;
-        }
-    }
-}
-
-.auth-navigation-block {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding-top: 16px;
-    border-top: 1px solid var(--grey-border);
-    position: absolute;
-    bottom: 0;
-
-    > a {
-        display: block;
-        width: 40%;
-        text-align: center;
-        font-size: 14px;
-    }
-}
-
-.password-block {
-
-    &__inputs {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
-
-    .input-block {
-        width: 48%;
-    }
-
-}
-
-.passwordMatch {
-    border: 2px solid rgb(255 123 123) !important;
-
-    &:focus {
-        border: 2px solid var(--blue) !important;
-    }
-}
+@import "./auth-styles.scss";
 
 .edit-button {
     display: block;
@@ -225,4 +80,164 @@ main.full-project {
     transition: transform .55s cubic-bezier(0, 0, 0.2, 1) ;
 }
 
+.type-select.task-info {
+    width: 180px;
 
+    .mat-form-field-infix  {
+        border-top: none !important;
+        height: 32px;
+    }
+
+    * {
+        color: var(--darkblue);
+        background: transparent;
+    }
+
+    &:hover {
+        background: var(--greyish);
+    }
+
+}
+
+.task-info .mat-option-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--darkblue);
+}
+
+
+.type-select {
+    height: 32px;
+    width: 80px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 0 !important;
+
+    *{
+        border-radius: 0 !important;
+        text-align: center;
+        color: white;
+    }
+
+    &:hover {
+        background: var(--grey-border);
+    }
+
+    .mat-form-field-flex,
+    .mat-form-field-infix {
+        padding: 0 !important;
+    }
+
+    .mat-form-field-infix  {
+        border-top: none !important;
+        height: 32px;
+    }
+
+    .mat-select-arrow-wrapper {
+        transform: translateY(0%) !important;
+    }
+
+    .mat-form-field-underline {
+        display: none !important;
+    }
+
+    .mat-select-min-line {
+        padding-left: 10px;
+    }
+
+}
+
+.mat-option-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.swiper-for-files {
+    overflow: hidden;
+    
+    .swiper-wrapper {
+        display: flex;
+    }
+
+    .projects-panel__slide {
+        width: 100px;
+        height: 100px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+
+    .projects-panel__swiper-wrapper__right,
+    .projects-panel__swiper-wrapper__left {
+        margin-top: 34px;
+        height: 100px;
+    }
+}
+
+.preview {
+    .projects-panel__swiper-wrapper__right,
+    .projects-panel__swiper-wrapper__left {
+        margin-top: -5px;
+        height: 105px;
+    }
+}
+
+.projects-panel__swiper-wrapper__right,
+.projects-panel__swiper-wrapper__left {
+    width: 40px;
+    margin-top: 6px;
+    height: 156px;
+    position: absolute;
+    display: flex;
+    z-index: 100;
+    top: 0;
+}
+
+.projects-panel__swiper-wrapper__left {
+    left: 0;
+    background: linear-gradient(to right, white 0,rgba(255,255,255,0) 100%);
+}
+
+.projects-panel__swiper-wrapper__right {
+    right: 0;
+    background: linear-gradient(to left, white 0,rgba(255,255,255,0) 100%);
+}
+
+.modal-body {
+    max-height: 100vh;
+}
+
+.cdk-overlay-container {
+
+    * {
+        scrollbar-width: 0;
+    }
+    *::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.mat-tab-label .mat-tab-label-content {
+    margin-bottom: -18px;
+}
+
+.mat-form-field-label-wrapper{
+    margin-top: 3px !important;
+}
+
+.loader--24px {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    width: 24px;
+    height: 24px;
+
+    * {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}

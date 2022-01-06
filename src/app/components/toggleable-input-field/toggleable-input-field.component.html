@@ -1,0 +1,7 @@
+<div [class]="className || 'input-box'">
+    <textarea cdkTextareaAutosize type="text" [placeholder]="placeholderText" [value]="text" (input)="onChange($event)" (focus)="onFocus()" (blur)="onBlur($event)" [attr.maxlength]="maxLength || 32"></textarea>
+    <div *ngIf="textBoxActive">
+        <button [disabled]="text.trim().length === 0" name='confirmTextChange' (click)="onConfirm()"><mat-icon>done</mat-icon></button>
+        <button id='cancelTextChange' (click)="onCancel()"><mat-icon>clear</mat-icon></button>
+    </div>
+</div>

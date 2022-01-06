@@ -1,0 +1,149 @@
+.add-user-container {
+    width: 300px;
+    min-height: 300px;
+    max-height: 100vh;
+    position: relative;
+    padding: 8px;
+
+    h4 {
+        color: var(--darkblue);
+        font-size: 110%;
+        margin-bottom: 8px;
+    }
+
+    .input-container {
+        position: relative;
+        width: 100%;
+        height: 28px;
+    }
+
+    input {
+        width: 100%;
+        height: 28px;
+        border: 2px solid var(--grey-border);
+        border-radius: 3px;
+        padding: 0 3px;
+
+        &:hover {
+            background: var(--greyish);
+        }
+
+        &:focus {
+            outline: none;
+            border: 2px solid var(--blue);
+        }
+    }
+}
+
+.close {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#add-user {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+
+    &:hover {
+        background: var(--greyish);
+    }
+
+    * {
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 20px;
+    }
+}
+
+.added-users{
+    margin-top: 16px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    padding: 4px;
+    border-radius: 3px;
+    border: 2px solid transparent;
+
+    &:hover{
+        border: 2px solid var(--blue);
+    }
+
+    a {
+        display: flex;
+        height: 32px;
+        width: 100%;
+        color: var(--darkblue);
+    }
+    
+    &:hover {
+        background: var(--greyish);
+    }
+
+    .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+    }
+
+    .name {
+        width: calc(100% - 64px);
+        height: 32px;
+        line-height: 30px;
+        padding: 0px 8px;
+    }
+
+    .remove {
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+
+        &:hover {
+            background: white;
+        }
+
+        * {
+            width: 20px !important;
+            height: 20px !important;
+            font-size: 20px;
+            color: var(--darkblue);
+        }
+    }
+}
+
+.add-users-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: 2px solid var(--greyish);
+    background: white;
+    padding: 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 500;
+
+    &:not([disabled]) {
+        color: var(--darkblue);
+    }
+
+    &:not([disabled]):hover {
+        border: 2px solid var(--blue);
+        background: var(--greyish);
+    }
+}

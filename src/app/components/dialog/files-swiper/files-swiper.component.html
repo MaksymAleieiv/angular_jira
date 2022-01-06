@@ -1,0 +1,22 @@
+<div class="swiper-for-files" appClickStopPropagation *ngIf="descriptionEditing && !(files.length > 0) || files.length > 0" [ngClass]="descriptionEditing ? 'editing' : 'preview'">
+    <div [ngStyle]="{'display' : showBeginCurtains ? 'block' : 'none'}" class="projects-panel__swiper-wrapper__left"></div>
+    <swiper [config]="config" (slideChange)="onSwipe($event)" (reachEnd)="onEnd()" (reachBeginning)="onBeginning()">
+        <ng-template swiperSlide *ngFor="let file of files; index as i" >
+            <div class="file-slide">
+                <button class="deleteFile" (click)="removeImageWithId(file.id)" type="button" *ngIf="descriptionEditing">
+                    <mat-icon>clear</mat-icon>
+                </button>
+                <img [src]="fileUrls[i] | safeResourceUrl" (click)="openFile(fileUrls[i])"/>
+            </div>
+        </ng-template>
+        <ng-template swiperSlide *ngIf="descriptionEditing">
+            <div class="file-slide">
+                <label>
+                    <mat-icon>add</mat-icon>
+                    <input accept='image/jpg, image/jpeg, image/png' type='file' class='addImageInput' multiple (change)="addFile($event)"/> 
+                </label>
+            </div>
+        </ng-template>
+    </swiper>
+    <div [ngStyle]="{'display' : showEndCurtains ? 'block' : 'none'}" class="projects-panel__swiper-wrapper__right"></div>   
+</div>

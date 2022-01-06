@@ -1,2 +1,16 @@
-<p>project-top-block works!</p>
-<button (click)="createNewStatusBlock()">123</button>
+<div class="project__top-block">
+    <app-toggleable-input-field [inputText]="projectTitleInput || ''" [placeholderText]="'Enter project title...'" (output)="onOutputTitle($event)"></app-toggleable-input-field>
+    <app-toggleable-input-field [inputText]="project?.description || ''" [placeholderText]="'Enter project description...'" [maxLength]="200" (output)="onOutputDescription($event)" className="description"></app-toggleable-input-field>
+
+
+
+    <div class="project-people" *ngIf="project?.users" [style.width.px]="project.users.length > 4 ? 182 : project.users.length * 28">
+        <a [href]="i" *ngFor="let e of [].constructor(project.users.length > 4 ? (4) : (project.users.length) ); let i = index" [ngStyle]="{left: i * 22 + 'px'}" class="people-link-avatars">
+            <img [src]="!!project.users[i].avatar ? project.users[i].avatar : '../../../assets/default-avatar.png'" alt="" class="project-people__avatar">
+        </a>
+        <a *ngIf="project.users.length > 4" class="people-link-all" href="#">and {{project.users.length - 4}} more...</a>
+        <button class="add-user" (click)="addUser()">
+            <svg width="24" height="24" viewBox="0 0 24 24" role="presentation"><g fill="currentColor" fill-rule="evenodd"><rect x="18" y="5" width="2" height="6" rx="1"></rect><rect x="16" y="7" width="6" height="2" rx="1"></rect><path d="M5 14c0-1.105.902-2 2.009-2h7.982c1.11 0 2.009.894 2.009 2.006v4.44c0 3.405-12 3.405-12 0V14z"></path><circle cx="11" cy="7" r="4"></circle></g></svg>
+        </button>
+    </div>
+</div>

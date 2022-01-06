@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { ConfirmDeleleComponent } from 'src/app/components/dialog/confirm-delele/confirm-delele.component';
-import { CreateStatusComponent } from 'src/app/components/dialog/create-status/create-status.component';
+import { AddUserToProjectComponent } from 'src/app/components/dialog/add-user-to-project/add-user-to-project.component';
+import { ConfirmActionComponent } from 'src/app/components/dialog/confirm-action/confirm-action.component';
 import { EditStatusComponent } from 'src/app/components/dialog/edit-status/edit-status.component';
 import { EditTaskComponent } from 'src/app/components/dialog/edit-task/edit-task.component';
+import { ImageViewerComponent } from 'src/app/components/dialog/image-viewer/image-viewer.component';
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +14,41 @@ export class DialogService {
 
   constructor(private dialog: MatDialog) { }
 
-  openConfirmDeletingDialog(): Observable<boolean> {
-    let dialogRef = this.dialog.open(ConfirmDeleleComponent);
+  openConfirmActionDialog(title: string): Observable<boolean> {
+    let dialogRef = this.dialog.open(ConfirmActionComponent, {data: {title}});
     return dialogRef.afterClosed().pipe()
   }
 
   openCreateStatusDialog(): Observable<any> {
-    let dialogRef = this.dialog.open(CreateStatusComponent);
+    let dialogRef = this.dialog.open(EditStatusComponent);
     return dialogRef.afterClosed().pipe()
   }
 
   openEditStatusDialog(title: string): Observable<any> {
-    let dialogRef = this.dialog.open(EditStatusComponent, {data: title});
+    let dialogRef = this.dialog.open(EditStatusComponent, {data: title, maxHeight: '100vh', autoFocus: false});
     return dialogRef.afterClosed().pipe()
   }
 
-  openEditTaskDialog(): Observable<any> {
-    let dialogRef = this.dialog.open(EditTaskComponent);
+  openCreateTaskDialog(statusId: number): Observable<any> {
+    let dialogRef = this.dialog.open(EditTaskComponent, {data: {statusId}, maxHeight: '100vh', autoFocus: false, disableClose: true});
     return dialogRef.afterClosed().pipe()
+  }
+
+  openEditTaskDialog(taskId: number): Observable<any> {
+    let dialogRef = this.dialog.open(EditTaskComponent, {data: {taskId}, maxHeight: '100vh', autoFocus: false});
+    return dialogRef.afterClosed().pipe()
+  }
+
+  openAddUserToProject(): Observable<any> {
+    let dialogRef = this.dialog.open(AddUserToProjectComponent, {maxHeight: '100vh', autoFocus: false, disableClose: true});
+    return dialogRef.afterClosed().pipe()
+  }
+
+  overlayOpened() {
+    return this.dialog.openDialogs.length > 0
+  }
+
+  openImage(image: string) {
+    this.dialog.open(ImageViewerComponent, {data: {image}, maxHeight: '100vh', autoFocus: false })
   }
 }

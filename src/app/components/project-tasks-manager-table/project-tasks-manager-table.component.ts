@@ -14,21 +14,22 @@ export class ProjectTasksManagerTableComponent implements OnChanges{
   listHeight: number = 0
 
   @Input() isCurrentUserAdmin = false;
+  @Input() project!: FullProject
  
   tasks: Task[] = [];
   sortedObjectOfTasks!: SortedTasks
   statuses:string[] = []
   statusesIds:number[] = []
 
-  @Input() project!: FullProject
 
   constructor(private fullProjectStore: FullProjectService) {
   }
 
   ngOnChanges(changes: any): void {
-    console.log(changes)
-    this.tasks = changes.project.currentValue.tasks
-    this.sortTasks();
+    try{
+      this.tasks = changes['project'].currentValue.tasks
+      this.sortTasks();
+    }catch{}
   }
 
   drop(event: CdkDragDrop<Task[]>) {
@@ -45,7 +46,7 @@ export class ProjectTasksManagerTableComponent implements OnChanges{
       let s = event.container.element.nativeElement.classList.toString().split(' ').filter(clas => clas.includes('status-id-'))[0];
       let taskId = Number.parseInt(t.slice(8, t.length));
       let newStatusId = Number.parseInt(s.slice(10, s.length))
-      this.changeTasksStatus(taskId, newStatusId)
+      this.fullProjectStore.changeTasksStatus(taskId, newStatusId)
     }
   }
 
@@ -56,23 +57,24 @@ export class ProjectTasksManagerTableComponent implements OnChanges{
 
   sortTasks() {
     let sortedObjectOfTasks: SortedTasks = {};
-    this.statuses = [];
-    this.statusesIds = [];
+    let statuses: string[] = []
+    let statusesIds: number[] = []
     this.tasks.forEach((task, index) => {
       let {id, title} = task.status;
 
-      if( this.statusesIds.indexOf(id) === -1 ) {
-        this.statuses.push(title)
-        this.statusesIds.push(task.status.id)
+      if( statusesIds.indexOf(id) === -1 ) {
+        statuses.push(title)
+        statusesIds.push(id)
       }
 
       if(!sortedObjectOfTasks[id]) sortedObjectOfTasks[id] = [];
 
-      if(task.type.id !== 5) sortedObjectOfTasks[id].push(task);
+      if(task.type.id !== 1) sortedObjectOfTasks[id].push(task);
 
       if(index + 1 === this.tasks.length) {
-        this.sortedObjectOfTasks = sortedObjectOfTasks
-        console.log(sortedObjectOfTasks)
+        this.sortedObjectOfTasks = sortedObjectOfTasks;
+        this.statuses = statuses;
+        this.statusesIds = statusesIds;
         this.calculateMinHeight()
       }
     })
@@ -88,17 +90,21 @@ export class ProjectTasksManagerTableComponent implements OnChanges{
     let maxTasksCount = Math.max(...values);
     this.listHeight = 96 * maxTasksCount - 1
   }
-  
-  changeTasksStatus(taskId: number, newStatusId: number) {
-    this.fullProjectStore.changeTasksStatus(taskId, newStatusId)
+
+  addTask(statusId: number) {
+    this.fullProjectStore.createTask(statusId)
   }
 
   editTask(taskId: number) {
-
+    this.fullProjectStore.openEditTask(taskId)
   }
 
   deleteTask(taskId: number) {
     this.fullProjectStore.deleteTaskById(taskId)
+  }
+
+  createNewStatusBlock() {
+    this.fullProjectStore.createNewStatusBlock()
   }
 
   editStatus(statusId: number, title: string) {

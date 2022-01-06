@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { CurrentUser } from 'src/app/components/Interfaces/CurrentUser';
 import { CurrentUserApiService } from '../api/current-user-api.service';
 
@@ -10,7 +11,7 @@ export class CurrentUserStoreService {
   currentUser: CurrentUser | null = null;
   token: string | null = null;
 
-  constructor(private currentUserApi: CurrentUserApiService) {}
+  constructor(private currentUserApi: CurrentUserApiService, private router: Router) {}
 
   setToken(token: string) {
     if(token !== '') {
@@ -47,6 +48,7 @@ export class CurrentUserStoreService {
     this.currentUser = null;
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
+    this.router.navigateByUrl('/login')
   }
 
   get isCurrentUserAdmin() {

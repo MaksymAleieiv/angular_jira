@@ -17,4 +17,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logOut() {
+    this.currentUserStore.clearCurrentUser()
+  }
+
 }

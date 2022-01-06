@@ -12,15 +12,18 @@
 }
 
 .projects-panel {
-    width: 100%;
-    height: 242px;
+    width: calc(100% + 32px);
+    height: 206px;
     background: var(--whiteish);
+    margin-left: -32px;
 
     &__header {
         display: flex;
         justify-content: space-between;
         padding: 0 10px;
-        margin-bottom: 4px;
+        padding-bottom: 8px;
+        background: white;
+        padding-left: 40px;
 
         > h3 {
             color: var(--darkblue);
@@ -41,6 +44,10 @@
         background: white;
         border-radius: 3px;
         padding: 6px;
+
+        &:first-child {
+            margin-left: 38px;
+        }
     }
 
     &__swiper-slide {

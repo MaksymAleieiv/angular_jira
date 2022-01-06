@@ -1,0 +1,47 @@
+<div class="right-side-block">
+    <div class="info-block">
+        <h4>Task Info</h4>
+        <div class="row">
+            <div class="title">
+                Current status
+            </div>
+            <div class="info">
+                <mat-form-field appearance="fill" class="type-select task-info">
+                    <mat-label *ngIf="!selectedStatus && !statusId">Status</mat-label>
+                    <mat-select required [value]="statusId || selectedStatus?.id || null" panelClass="task-info" (selectionChange)="onChangeStatus($event)">
+                        <ng-container *ngFor="let status of statuses">
+                            <mat-option [value]="status.id">
+                                {{status.title}}
+                            </mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="title">
+                Assigned to
+            </div>
+            <div class="info">
+                <mat-form-field appearance="fill" class="type-select task-info">
+                    <mat-label *ngIf="!selectedUser">User</mat-label>
+                    <mat-select required [value]="selectedUser?.id || null" panelClass="task-info" (selectionChange)="onChangeUser($event)">
+                        <ng-container *ngFor="let user of users">
+                            <mat-option [value]="user.id">
+                                {{user.name}}
+                            </mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="date-block" *ngIf="task?.createdAt">
+        <span class="created">
+            Created on <span>{{task?.createdAt | date: 'MMM dd yyyy, hh:mm'}}</span>
+        </span>
+        <span class="updated">
+            Last updated at <span>{{task?.updatedAt | date: 'MMM dd yyyy, hh:mm'}}</span>
+        </span>
+    </div>
+</div>

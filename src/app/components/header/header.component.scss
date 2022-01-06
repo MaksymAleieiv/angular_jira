@@ -1,7 +1,7 @@
 .header{
     width: 100%;
     height: 56px;
-    padding: 6px max(18px, calc(50% - 1100px));
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,20 +17,37 @@
         right: 0;
         top: 100%;
         height: 4px;
+        z-index: 10;
         background: linear-gradient(180deg,rgba(9,30,66,0.13) 0,rgba(9,30,66,0.13) 1px,rgba(9,30,66,0.08) 1px,rgba(9,30,66,0) 4px);
     }
 
-    &__logo {
+    > a {
         height: 60%;
+    }
+
+    &__logo {
+        height: 100%;
     }
 
     &__right {
         height: 100%;
-
-
-        &__avatar {
-            height: 100%;
-            border-radius: 50%;
-        }
     }
+}
+
+.avatar-btn {
+    height: 100%;
+    width: 36px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+
+    &__avatar {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+}
+
+.logout{
+    color: var(--error);
 }

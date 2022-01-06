@@ -10,6 +10,10 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
+                    <button (click)="addTask(statusId)" mat-menu-item>
+                        <mat-icon>add</mat-icon>
+                        <span class="mat-btn-text">Add task</span>
+                    </button>
                     <button (click)="editStatus(statusId, statuses[i])" mat-menu-item>
                         <mat-icon>create</mat-icon>
                         <span class="mat-btn-text">Edit status</span>
@@ -29,25 +33,30 @@
             (cdkDropListDropped)="drop($event)"
             [style.height.px]="listHeight"
         >
-            <div *ngFor="let task of sortedObjectOfTasks[statusId] || []" [class]="'task-in-list task-id-' + task.id" [style.opacity]="task.type.id === 5 ? (0) : (1)" cdkDrag>
-                <div class="task__wrapper">
+            <div
+                *ngFor="let task of sortedObjectOfTasks[statusId] || []"
+                [class]="'task-in-list task-id-' + task.id"
+                [style.opacity]="task.type.id === 1 ? (0) : (1)"
+                cdkDrag
+            >
+                <div class="task__wrapper" (click)="editTask(task.id)">
                     <div class="top">
                         <h3>{{task.title}}</h3>
-                        <button mat-icon-button [matMenuTriggerFor]="menu" class="edit-button" *ngIf="isCurrentUserAdmin; else defaultUser">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" class="edit-button" *ngIf="isCurrentUserAdmin; else defaultUser" appClickStopPropagation>
                             <mat-icon>more_horiz</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button (click)="editTask(task.id)" mat-menu-item>
+                            <button (click)="editTask(task.id)" mat-menu-item appClickStopPropagation>
                                 <mat-icon>create</mat-icon>
                                 <span class="mat-btn-text">Edit task</span>
                             </button>
-                            <button (click)="deleteTask(task.id)" mat-menu-item>
+                            <button (click)="deleteTask(task.id)" mat-menu-item appClickStopPropagation>
                                 <mat-icon>delete_forever</mat-icon>
                                 <span class="mat-btn-text">Delete task</span>
                             </button>
                         </mat-menu>
                         <ng-template #defaultUser>
-                            <button mat-icon-button [matMenuTriggerFor]="menu" class="edit-button"  (click)="editTask(task.id)">
+                            <button mat-icon-button [matMenuTriggerFor]="menu" class="edit-button" (click)="editTask(task.id)" appClickStopPropagation>
                                 <mat-icon>create</mat-icon>
                             </button>
                         </ng-template>
@@ -62,6 +71,9 @@
             </div>
         </div>
     </div>
+    <button class="add-status" (click)="createNewStatusBlock()">
+        <mat-icon>add</mat-icon>
+    </button>
 </div>
 
 

@@ -57,7 +57,6 @@ export class LoginFormComponent implements OnInit {
         .subscribe({
 
           next: (res) => {
-            console.log('Successfully logged in');
             this.currentUserStore.setToken(res.token)
             this.loading = false;
             let returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
@@ -65,7 +64,6 @@ export class LoginFormComponent implements OnInit {
           },
 
           error: (err) => {
-            console.log('Error while trying to log in the user');
             console.log(err)
             if(err instanceof HttpErrorResponse) {
               let response: ApiErrorResponse = err.error;
@@ -78,7 +76,7 @@ export class LoginFormComponent implements OnInit {
                 })
               }catch {}finally {
                 this.loading = false;
-                this.snackBar.open(response.message)
+                this.snackBar.open(response.comment)
               }
             }
           }

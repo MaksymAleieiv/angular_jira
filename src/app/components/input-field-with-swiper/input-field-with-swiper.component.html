@@ -1,0 +1,20 @@
+<div [class]="ClassName && ClassName + '__input-box' || 'description__input-box'" [style.marginLeft]="descriptionEditing ? '-12px' : '0'">
+    <div [class]="ClassName && ClassName + '__text' || 'description__text'" *ngIf="!descriptionEditing" (click)="startEditing()" [style.paddingBottom]="descriptionEditing && !(files.length > 0) || files.length > 0 ? '4px' : '12px'">
+        {{inputText || placeholderText}}
+        <app-files-swiper [files]="files" [descriptionEditing]="descriptionEditing"></app-files-swiper>
+    </div>
+    <div *ngIf="descriptionEditing">
+        <div [class]="ClassName && 'task-' + ClassName + '-redactor' || 'task-description-redactor'">
+            <textarea cdkTextareaAutosize class="description__input" [placeholder]="placeholderText" [value]="inputText" (change)="setInputText($event)" maxlength="400" #text></textarea>
+            <app-files-swiper
+                [files]="files" [newFiles]="newFiles" [removedFilesIds]="removedFilesIds"
+                (setFilesOutput)="setFiles($event)"
+                [descriptionEditing]="descriptionEditing"
+            ></app-files-swiper>
+        </div>
+        <div class="description__input__under">
+            <button class="save" (click)="confirmDescriptionChanges()" type="button">Save</button>
+            <button class="cancel" (click)="closeDescriptionInput()" type="button">Cancel</button>
+        </div>
+    </div>
+</div>

@@ -2,12 +2,11 @@
 .tasks-table {
     width: 100%;
     display: flex;
-    padding: 6px;
     gap: 6px;
     border-radius: 6px;
     position: relative;
-    overflow: scroll;
-    max-height: calc(100vh - 112px);
+    overflow: auto;
+    max-height: calc(100vh - 268px);
 }
 
 .tasks-list-box {
@@ -103,7 +102,7 @@
     width: 96%;
     height: 84px;
     background: white;
-    cursor: grab;
+    cursor: pointer;
     border-radius: 3px;
     box-shadow: rgb(23 43 77 / 20%) 0px 1px 1px, rgb(23 43 77 / 20%) 0px 0px 1px;
     transition: background-color 140ms ease-in-out 0s, color 140ms ease-in-out 0s;
@@ -131,6 +130,10 @@
             font-size: 14px;
             font-weight: 400;
             color: var(--darkblue);
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 176px;
         }
     }
 
@@ -169,6 +172,19 @@
     border-radius: 50%;
 }
 
+.add-status {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: var(--greyish);
+    cursor: pointer;
+    opacity: .7;
+    transition: all .3s ease-in-out;
+    border: 1px solid var(--grey-border);
 
-  
-  
+    &:hover {
+        opacity: 1;
+        transition: all .3s ease-in-out;
+        border: 1px solid var(--blue);
+    }
+}

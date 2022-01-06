@@ -1,0 +1,17 @@
+
+<mat-tab-group>
+    <mat-tab label="Your Tasks"> 
+        <div class="my-tasks">
+            <div class="task" *ngFor="let task of my_tasks" [style.display]="task.type.id === 1 ? 'none' : 'block'">
+                <h5 class="task__title" (click)="openThisTask(task.projectId, task.id)">{{task.title}}</h5>
+                <div class="task__type">
+                    <div class="task__type__title" [style.backgroundColor]="task.type.color">{{task.type.title}}</div>
+                </div>
+                <div class="task__status">
+                    <div class="task__status__title">{{task.status.title}}</div>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+  </mat-tab-group>
+  

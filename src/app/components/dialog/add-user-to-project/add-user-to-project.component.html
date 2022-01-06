@@ -1,0 +1,31 @@
+<div class="add-user-container">
+    <button class="close" (click)="onClose()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <h4>Add more people</h4>
+    <div class="input-container">
+        <input type="text" placeholder="Enter users email..." [value]="emailInInput" (input)="onChange($event.target)" (focus)="onFocus()" (blur)="onBlur($event)">
+        <div *ngIf="focused">
+            <div *ngIf="loading; else show" class="loader--24px">
+                <mat-spinner></mat-spinner>
+            </div>
+            <ng-template #show>
+                <button *ngIf="!!newUser" (click)="addToEmailsList()" id="add-user">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </ng-template>
+        </div>
+    </div>
+    <div class="added-users">
+        <div *ngFor="let user of users" class="user">
+            <a [routerLink]="'profile/' + user.id">
+                <img [src]="!!user.avatar ? user.avatar : '../../../assets/default-avatar.png'" alt="" class="avatar">
+                <div class="name">{{user.name}}</div>
+            </a>
+            <button class="remove" (click)="removeUserFromList(user.id)">
+                <mat-icon>delete_forever</mat-icon>
+            </button>
+        </div>
+    </div>
+    <button [disabled]="loading || users.length === 0" class="add-users-btn" (click)="addUsersToProject()">Add users to project</button>
+</div>

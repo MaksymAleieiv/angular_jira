@@ -76,7 +76,6 @@ export class RegistrationFormComponent implements OnInit {
         .subscribe({
 
           next: (res) => {
-            console.log('Successfully registred')
             this.currentUserStore.setToken(res.token)
             this.loading = false;
             let returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
@@ -84,7 +83,6 @@ export class RegistrationFormComponent implements OnInit {
           },
 
           error: (err) => {
-            console.log('Error while trying to register the user');
             console.log(err);
             this.loading = false;
             if(err instanceof HttpErrorResponse) {
@@ -97,7 +95,7 @@ export class RegistrationFormComponent implements OnInit {
                 })
               }catch {}finally {
                 this.loading = false;
-                this.snackBar.open(response.message)
+                this.snackBar.open(response.comment)
               }
             }
           }

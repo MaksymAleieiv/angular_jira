@@ -21,9 +21,6 @@ export interface Task {
     createdAt: string;
     updatedAt: string;
     projectId: number;
-    statusId: number;
-    typeId: number;
-    userId: number;
     status: Status;
     type: Type;
     user: CurrentUser;

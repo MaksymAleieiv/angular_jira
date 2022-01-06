@@ -17,7 +17,7 @@ export class ProjectsPanelComponent implements OnInit {
   doesCurrentUserHaveMoreThanTenProjects = true;
 
   showBeginCurtains = false;
-  showEndCurtains = true;
+  showEndCurtains = false;
   
   config: SwiperOptions = {
     slidesPerView: 'auto',
@@ -35,10 +35,10 @@ export class ProjectsPanelComponent implements OnInit {
   getProjects(): void {
     this.projectApi.fetchMyProjects().subscribe({
       next: (res: any) => {
-        //this.projects = res.projects;
-        let value = res.projects;
-        value[0].users = Array(25).fill(value[0].users[0])
-        this.projects = this.transformProjects(Array(25).fill(value[0]))
+        this.projects = res.projects;
+        //let value = res.projects;
+        //value[0].users = Array(25).fill(value[0].users[0])
+        //this.projects = this.transformProjects(Array(25).fill(value[0]))
       },
       error: () => {
         this.snackBar.open('Couldn\'t load your projects ;c');

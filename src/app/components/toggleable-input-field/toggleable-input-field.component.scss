@@ -1,0 +1,100 @@
+.input-box {
+    position: relative;
+    width: max(300px, 34%);
+    margin-left: 1px;
+    margin-bottom: 12px;
+}
+
+textarea {
+    color: var(--darkblue);
+    width: 100%;
+    border-radius: 3px;
+    padding: 0 3px;
+    border: 2px solid transparent;
+    font-size: 24px;
+    font-weight: 600;
+    resize: none;
+    min-height: 36px;
+
+    &:focus {
+        outline: none;
+        border: 2px solid var(--blue);
+    }
+
+    &:hover {
+        background: var(--greyish);
+    }
+}
+
+div {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 4px;
+    right: 8px;
+    width: 64px;
+}
+
+button {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid var(--grey-border);
+
+    &:disabled {
+        opacity: 0.6;
+
+        &:hover {
+            background: transparent;
+            border: 1px solid var(--grey-border);
+        }
+    }
+    
+    &:hover {
+        background: var(--greyish);
+        border: 1px solid var(--blue);
+    }
+}
+
+.input-box-task {
+    position: relative;
+    width: 100%;
+    margin-left: 2px;
+    margin-bottom: 8px;
+    margin-top: -6px;
+}
+
+.description {
+    position: relative;
+    width: max(300px, 34%);
+    margin-left: 2px;
+    margin-bottom: 12px;
+
+    textarea {
+        font-size: 18px;
+        min-height: 28px;
+        scrollbar-width: 0;
+        color: var(--grey);
+
+        &::-webkit-scrollbar{
+            display: none;
+        }
+    }
+    
+    div {
+        width: 46px;
+    }
+    
+    button {
+        width: 20px;
+        height: 20px;
+
+        * {
+            height: 20px;
+            width: 18px;
+            font-size: 18px;
+        }
+    }
+}

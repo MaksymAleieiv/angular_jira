@@ -1,0 +1,145 @@
+
+
+.comment__input:hover {
+    background: transparent;
+}
+.project-title__input,
+.description__input,
+.description__text {
+    color:#828282;
+    border-radius: 3px;
+    width: max(300px, 100%);
+    padding: 0 3px;
+    border: 1px solid transparent;
+    margin-left: -4px;
+
+    &:hover {
+        background: var(--greyish);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.commentCreate__text {
+    border-radius: 3px;
+    width: max(300px, 100%);
+    padding: 0 3px;
+    border: 1px solid var(--grey-border);
+    margin-left: -12px;
+    padding: 12px;
+    padding-top: 11px;
+    padding-left: 9px;
+    color:#828282;
+
+    &:hover {
+        border: 1px solid var(--grey);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.comment__text {
+    border-radius: 3px;
+    width: max(300px, 100%);
+    padding: 0 3px;
+    margin-left: -12px;
+    padding: 12px;
+    padding-top: 12px !important;
+    padding-left: 3px !important;
+    color:#828282;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+
+.description, .comment {
+
+    &-box {
+        width: max(300px, 100%);
+    }
+
+    &__text{
+        margin-left: -5px;
+        padding: 12px 3px;
+        padding-bottom: 4px;
+        padding-top: 11px;
+        padding-left: 4px;
+    }
+
+    &__header {
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    &__input {
+        resize: none;
+        margin-left: 0px;
+        font-size: 16px;
+        overflow: hidden;
+        line-height: 21px;
+        min-height: 44px;
+        padding-left: 8px;
+        margin-top: 10px;
+
+        &-box {
+            margin-top: 8px;
+        }
+
+        &:hover {
+            background: transparent;
+        }
+    }
+}
+
+.task-comment-redactor,
+.task-commentCreate-redactor  {
+    margin-left: 0 !important;
+}
+
+.task-description-redactor,
+.task-comment-redactor,
+.task-commentCreate-redactor {
+    border-radius: 3px;
+    position: relative;
+    border: 1px solid var(--grey-border);
+    margin-left: 2px;
+}
+
+.description__input__under {
+    height: 48px;
+    padding-top: 16px;
+
+    .save, .cancel {
+        height: 32px;
+        padding: 0 16px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 30px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .save {
+        background: var(--blue);
+        color: white;
+    }
+
+    .cancel {
+        background: transparent;
+        color: var(--grey);
+        margin-left: 16px;
+
+        &:hover {
+            background: var(--greyish);
+        }
+    }
+}

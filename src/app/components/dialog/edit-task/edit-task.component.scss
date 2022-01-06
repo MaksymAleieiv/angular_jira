@@ -1,0 +1,165 @@
+.overlay__inner__project {
+    padding: 24px 16px;
+    width: 60vw;
+    height: 70vh;
+    background: white;
+}
+
+.edit-task__wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    &__left {
+        width: 60%;
+        padding-bottom: 48px;
+    }
+
+    &__right {
+        width: 40%;
+        padding-bottom: 48px;
+        height: 100%;
+        position: relative;
+    }
+}
+
+.header {
+    width: 100%;
+}
+
+.project-title__input,
+.description__input,
+.description__text {
+    color: var(--darkblue);
+    border-radius: 3px;
+    width: max(300px, 100%);
+    padding: 0 3px;
+    border: 2px solid transparent;
+    margin-left: -4px;
+
+    &:hover {
+        background: var(--greyish);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.project-title__input {
+    font-size: 24px;
+    font-weight: 600;
+
+    &.ng-invalid.ng-dirty {
+        border: 2px solid #ff7b7b;
+
+        &:focus {
+            border: 2px solid var(--blue);
+        }
+    }
+
+    &:focus {
+        border: 2px solid var(--blue);
+    }
+
+}
+
+.project-title__under {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 212px;
+}
+
+.copy-link {
+    border: none;
+    height: 32px;
+    width: 116px;
+    padding: 0px 16px;
+    color: var(--darkblue);
+    background: var(--greyish);
+    line-height: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+
+    > *.mat-icon {
+        margin-right: 5px;
+        margin-left: -5px;
+    }
+
+    &:hover {
+        background: var(--grey-border);
+    }
+}
+
+
+.description {
+
+    &-box {
+        width: max(300px, 100%);
+    }
+
+    &__text{
+        margin-left: -5px;
+        padding: 12px 3px;
+        padding-bottom: 4px;
+    }
+
+    &__header {
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    &__input {
+        resize: none;
+        margin-left: 0px;
+        font-size: 16px;
+        overflow: hidden;
+        line-height: 42px;
+        min-height: 44px;
+        padding-left: 8px;
+
+        &-box {
+            margin-top: 12px;
+        }
+
+        &:hover {
+            background: transparent;
+        }
+    }
+}
+
+.form {
+    width: 100%;
+    height: 100%;
+}
+
+.confirm {
+    cursor: pointer;
+    border: none;
+    background: var(--blue);
+    color: white;
+    height: 32px;
+    padding: 0 16px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 30px;
+    border-radius: 3px;
+    position: absolute;
+    bottom: 0;
+    right: -24px;
+}
+
+.close {
+    position: absolute;
+    background: transparent;
+    top: -32px;
+    right: -24px;
+    border: none;
+    cursor: pointer;
+}

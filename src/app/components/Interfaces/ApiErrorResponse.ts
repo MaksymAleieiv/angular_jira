@@ -6,6 +6,6 @@ export interface ApiErrorResponseError {
 }
 
 export interface ApiErrorResponse {
-    message: string;
+    comment: string;
     errors?: ApiErrorResponseError[];
 }
